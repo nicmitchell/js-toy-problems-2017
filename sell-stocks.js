@@ -18,7 +18,7 @@ getMaxProfit(stockPricesYesterday);
 No "shorting"—you must buy before you sell. You may not buy and sell in the same time step (at least 1 minute must pass).
 */
 
-let stockPricesYesterday = [10, 7, 5, 8, 11, 9];
+let stockPricesYesterday = [10, 6, 14, 7, 5, 8, 11, 9];
 
 let getMaxProfit = (stockPricesYesterday) => {
   let bestProfit = 0;
@@ -35,3 +35,18 @@ let getMaxProfit = (stockPricesYesterday) => {
   return bestProfit;
 };
 
+/* O(n) Solution */
+
+let stockPricesYesterday2 = [10, 6, 6, 7, 5, 8, 11, 9];
+
+let getMaxProfit2 = (stocks) => { 
+  let maxProfit = 0;
+  let bestBuyPrice = stocks[0];
+
+  for (let i = 1; i < stocks.length; i++) {
+    bestBuyPrice = Math.min(stocks[i], bestBuyPrice);
+    maxProfit = Math.max(maxProfit, stocks[i] - bestBuyPrice);
+  }
+
+  return maxProfit;
+};
