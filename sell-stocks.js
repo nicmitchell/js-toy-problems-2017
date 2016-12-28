@@ -37,7 +37,7 @@ let getMaxProfit = (stockPricesYesterday) => {
 
 /* O(n) Solution */
 
-let stockPricesYesterday2 = [10, 6, 6, 7, 5, 8, 11, 9];
+let stockPricesYesterday2 = [10, 6, 16, 7, 5, 8, 11, 9];
 
 let getMaxProfit2 = (stocks) => { 
   let maxProfit = 0;
@@ -49,4 +49,14 @@ let getMaxProfit2 = (stocks) => {
   }
 
   return maxProfit;
+};
+
+/* Array.prototype.reduce solution */
+
+let getMaxProfitReduce = (stocks) => {
+  let bestBuyPrice = stocks[0];
+  return stocks.reduce((bestProfit, currentPrice, time, prices) => {
+    bestBuyPrice = Math.min(currentPrice, bestBuyPrice || currentPrice);
+    return Math.max(currentPrice - bestBuyPrice, bestProfit);
+  }, 0);
 };
