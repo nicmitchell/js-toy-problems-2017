@@ -27,4 +27,23 @@ let getProductsOfAllIntsExceptAtIndex = (numbers) => {
   });
 };
 
-console.log(getProductsOfAllIntsExceptAtIndex(numbers));
+/* O(n) solution */
+
+let getProductsOfAllIntsExceptAtIndex2 = (numbers) => {
+  let productSoFar = 1;
+  let productSoFarReverse = 1;
+  let productsBeforeIndex = [];
+  let result = [];
+
+  for (let i = 0; i < numbers.length; i++) {
+    productsBeforeIndex[i] = productSoFar;
+    productSoFar *= numbers[i];
+  }
+
+  for (let i = numbers.length - 1; i >= 0; i--) {
+    result[i] = productsBeforeIndex[i] * productSoFarReverse;
+    productSoFarReverse *= numbers[i];
+  }
+
+  return result;
+};
