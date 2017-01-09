@@ -9,6 +9,12 @@ let ints1 = [1,2,3,5,2];
 let ints2 = [2,7,10,3,4]; 
 // expected result: 280
 
+let ints3 = [2,-7,10,3,4,-10]; 
+// expected result: 700
+
+let ints4 = [-2,7,10,-3,-4,-10]; 
+// expected result: 400
+
 let arrayOfInts = (array) => {
   array.sort((a, b) => {
     return b - a;  
@@ -18,14 +24,22 @@ let arrayOfInts = (array) => {
 
 let arrayOfIntsMax = (array) => {
   let highestProductOf2 = array[0] * array [1];
-  let highestTotal = highestProductOf2 * array[2];
   let highest = Math.max(array[0], array[1]);
+
+  let lowestProductOf2 = array[0] * array [1];
+  let lowest = Math.min(array[0], array[1]);
+
+  let highestTotal = highestProductOf2 * array[2];
 
   array.forEach((number, idx) => {
     if (idx > 1) {
-      highestTotal = Math.max(highestTotal, highestProductOf2 * number);
-      highestProductOf2 = Math.max(highestProductOf2, highest * number);
+      highestTotal = Math.max(highestTotal, highestProductOf2 * number, lowestProductOf2 * number);
+
+      highestProductOf2 = Math.max(highestProductOf2, highest * number, lowest * number);
       highest = Math.max(highest, number);
+
+      lowestProductOf2 = Math.min(lowestProductOf2, highest * number, lowest * number);
+      lowest = Math.min(lowest, number);
     }
   });
 
