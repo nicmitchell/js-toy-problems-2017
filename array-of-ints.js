@@ -16,7 +16,7 @@ let arrayOfInts = (array) => {
   return array[0] * array[1] * array [2];
 };
 
-let arrayOfIntsIterate = (array) => {
+let arrayOfIntsMax = (array) => {
   let highestProductOf2 = array[0] * array [1];
   let highestTotal = highestProductOf2 * array[2];
   let highest = Math.max(array[0], array[1]);
@@ -32,3 +32,16 @@ let arrayOfIntsIterate = (array) => {
   return highestTotal;
 };
 
+let arrayOfIntsIfs = (array) => {
+  let highestProductOf2 = array[0] * array[1];
+  let highestTotal = highestProductOf2 * highestProductOf2;
+  let highest = (array[0] > array[1]) ? array[0] : array[1];
+
+  for (let i = 2; i < array.length; i++) {
+    highestTotal = (highestProductOf2 * array[i] > highestTotal) ? highestProductOf2 * array[i] : highestTotal;
+    highestProductOf2 = (highest * array[i] > highestProductOf2) ? highest * array[i] : highestProductOf2;
+    highest = (array[i] > highest) ? array[i] : highest;
+  }
+
+  return highestTotal;
+}
