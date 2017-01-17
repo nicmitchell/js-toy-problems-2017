@@ -19,24 +19,26 @@ your function would return:
 
 */
 
-const meetings =   [
-    {startTime: 0,  endTime: 1},
-    {startTime: 3,  endTime: 5},
-    {startTime: 4,  endTime: 8},
-    {startTime: 9,  endTime: 10},
-    {startTime: 10, endTime: 12},
-  ];
+const meetings = [
+  {startTime: 0,  endTime: 1},
+  {startTime: 10, endTime: 12},
+  {startTime: 9,  endTime: 10},
+  {startTime: 3,  endTime: 5},
+  {startTime: 4,  endTime: 8},
+];
 
 const mergeRanges = (meetings) => {
-  const results = [meetings[0]];
+  const sorted = meetings.sort((a, b) => {
+    return a.startTime - b.startTime;
+  });
+
+  const results = [sorted[0]];
   
   const testStartTime = (current, results) => {
-    console.log('testStartTime', current.startTime >= results.startTime && current.startTime <= results.endTime);
     return current.startTime >= results.startTime && current.startTime <= results.endTime;
   }
 
   const testEndTime = (current, results) => {
-    console.log('testEndTime', current.endTime >= results.startTime && current.startTime <= results.endTime);
     return current.endTime >= results.startTime && current.startTime <= results.endTime;
   }
 
