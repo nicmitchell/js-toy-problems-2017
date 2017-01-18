@@ -33,27 +33,14 @@ const mergeRanges = (meetings) => {
   });
 
   const results = [sorted[0]];
-  
-  const testStartTime = (current, results) => {
-    return current.startTime >= results.startTime && current.startTime <= results.endTime;
-  }
-
-  const testEndTime = (current, results) => {
-    return current.endTime >= results.startTime && current.startTime <= results.endTime;
-  }
 
   for (let i = 1; i < meetings.length; i++) {
     let current = meetings[i];
-    let addNewResult = true;
+    let lastMeeting = results[results.length - 1];
 
-    for (let j = 0; j < results.length; j++) {
-      if (testStartTime(current, results[j]) && testEndTime(current, results[j])) {
-        results[j].startTime = Math.min(results[j].startTime, current.endTime);
-        results[j].endTime = Math.max(results[j].endTime, current.endTime);
-        addNewResult = false;
-      }
-    }
-    if (addNewResult) {
+    if (current.startTime <= lastMeeting.endTime) {
+      lastMeeting.endTime = Math.max(lastMeeting.endTime, current.endTime);
+    } else {
       results.push(current);
     }
   }
