@@ -36,3 +36,17 @@ const makeChange = (amount, denominations) => {
 
   return result;
 }
+
+const makeChangeTail = (amount, denominations, running) => {
+  running = running || 0;
+
+  if (running === amount) {
+    return running++;
+  }
+  if (running > amount) {
+    return running;
+  }
+  for (let i = 0; i < denominations.length; i++) {
+    return makeChangeTail(amount, denominations, running + denominations[i]);
+  }
+}
