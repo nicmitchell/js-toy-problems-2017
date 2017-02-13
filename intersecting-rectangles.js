@@ -40,36 +40,24 @@ const rect2 = {
 }
 
 const findIntersection = (rect1, rect2) => {
-  let result = {};
+  const getOverlap = (start1, length1, start2, length2) => {
+    const highestStart = Math.max(start1, start2);
+    const lowestEnd = Math.min(start1 + length1, start2 + length2);
+    const overlapLength = lowestEnd - highestStart;
 
-  const getXvalues = (rect1, rect2) => {
-    const lower = (rect1.leftX < rect2.leftX) ? rect1 : rect2;
-    const higher = (rect1.leftX < rect2.leftX) ? rect2 : rect1;
-    const diff = Math.min(lower.leftX + lower.width, higher.leftX + higher.width) - higher.leftX;
     return {
-      leftX: higher.leftX,
-      width: diff
+      start: (lowestEnd >= highestStart) ? highestStart : null,
+      length: (lowestEnd >= highestStart) ? overlapLength : null
     };
   }
 
-  const getYvalues = (rect1, rect2) => {
-    const lower = (rect1.bottomY < rect2.bottomY) ? rect1 : rect2;
-    const higher = (rect1.bottomY < rect2.bottomY) ? rect2 : rect1;
-    const diff = Math.min(lower.bottomY + lower.height, higher.bottomY + higher.height) - higher.bottomY;
-    return {
-      bottomY: higher.bottomY,
-      height: diff
-    };
-  }
+  const xValues = getOverlap(rect1.leftX, rect1.width, rect2.leftX, rect2.width);
+  const yValues = getOverlap(rect1.bottomY, rect1.height, rect2.bottomY, rect2.height);
 
-  const xValues = getXvalues(rect1, rect2);
-  const yValues = getYvalues(rect1, rect2);
-
-  if (xValues.width > 0 && yValues.height > 0) {
-    result = Object.assign({}, xValues, yValues);
-  } else {
-    result = false;
-  }
-
-  return result;
+  return {
+    leftX: xValues.start,
+    width: xValues.length,
+    bottomY: yValues.start,
+    heigh: yValues.length
+  };
 };
