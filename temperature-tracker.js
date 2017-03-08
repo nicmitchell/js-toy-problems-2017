@@ -42,13 +42,17 @@ const TempTracker = function() {
   }
   this.getMode = function() {
     const modes = {};
-    let highest = new Number();
+    let highestMode = 0;
+    let modeTemp = '';
     temps.forEach(function(temp){
       temp = temp.toString();
-      modes[temp] = modes[temp] ? modes[temp]++ : 1;
-      highest = Math.max(modes[temp], highest);
+      modes[temp] = modes[temp] ? modes[temp] + 1 : 1;
+      highestMode = Math.max(modes[temp], highestMode);
+      if (modes[temp] === highestMode) {
+        modeTemp = temp;
+      }
     })
-    return highest;
+    return modeTemp;
   }
 }
 
