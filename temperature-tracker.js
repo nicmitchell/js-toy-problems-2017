@@ -56,7 +56,57 @@ const TempTracker = function() {
   }
 }
 
-const tempTracker = new TempTracker();
+const TempTrackerConstant = function() {
+  let max = null;
+  let min = null;
+  let count = 0;
+  let sum = 0;
+  let temps = [];
+  let mode = null;
+  let highestModeCount = 0;
+
+  // array for temp values up to 110
+  for (let i = 0; i < 111; i++) {
+    temps[i] = 0;
+  }
+
+  this.insert = function(temp) {
+    // max
+    if (max === null || temp > max) {
+      max = temp;
+    }
+
+    // min
+    if (min === null || temp < min) {
+      min = temp;
+    }
+
+    // mean
+    count++;
+    sum = sum + temp;
+
+    // mode
+    temps[temp]++;
+    if (temps[temp] > highestModeCount) {
+      highestModeCount = temps[temp];
+      mode = temp;
+    }
+  }
+  this.getMax = function() {
+    return max;
+  }
+  this.getMin = function() {
+    return min;
+  }
+  this.getMean = function() {
+    return Math.round(sum / count);
+  }
+  this.getMode = function() {
+    return mode;
+  }
+}
+
+const tempTracker = new TempTrackerConstant();
 
 tempTracker.insert(50);
 tempTracker.insert(89);
