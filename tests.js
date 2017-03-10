@@ -18,4 +18,16 @@ describe('Superbalanced binary tree', function() {
   it('Child nodes are instances of BinaryTreeNode', function() {
     expect(tree.left instanceof BinaryTreeNode).to.be.true;
   });
+
+  it('Can detect superbalanced tree', function() {
+    const superbalanced = checkSuperBalanced(tree);
+    expect(superbalanced).to.be.true;
+  });
+
+  it('Can detect an imbalanced tree', function() {
+    tree.insertLeft(6).insertLeft(8).insertLeft(10);
+    console.log(tree);
+    const notBalanced = checkSuperBalanced(tree);
+    expect(notBalanced).to.be.false;
+  });
 });
