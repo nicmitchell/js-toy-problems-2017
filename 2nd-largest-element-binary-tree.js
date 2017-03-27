@@ -19,22 +19,27 @@ BinaryTreeNode.prototype.insertRight = function(value) {
   return this.right;
 };
 
-function find2ndLargestElement(node) {
-  function findLargest(node, parentNode) {
-    if (!node.right) {
-      return { largestNode: node, parentNode: parentNode };
+function find2ndLargest(node) {
+  if (!node || (!node.left && !node.right)) {
+    throw new Error('Must have at least 2 nodes');
+  }
+
+  function findLargest(node) {
+    if (node.right) {
+      return findLargest(node.right);
     }
-    return findLargest(node.right, node);
+    return node;
   }
 
-  var largest = findLargest(node.right, node);
-  var secondLargest;
-
-  if (largest.left) {
-    secondLargest = findLargest(largest.left, node).largestNode;
-  } else {
-    secondLargest = largest.parent;
+  // found highest value, search left sub-tree
+  if (!node.right && node.left) {
+    return findLargest(node.left);
   }
 
-  return secondLargest;
+  // found parent of highest value with no left sub-tree
+  if (node.right && !node.right.left && !node.right.right) {
+    return node;
+  }
+
+  return find2ndLargest(node.right);
 }
