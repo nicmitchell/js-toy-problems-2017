@@ -25,21 +25,22 @@ function find2ndLargest(node) {
   }
 
   function findLargest(node) {
-    if (node.right) {
-      return findLargest(node.right);
+    while (node.right) {
+      node = node.right;
     }
     return node;
   }
 
-  // found highest value, search left sub-tree
-  if (!node.right && node.left) {
-    return findLargest(node.left);
-  }
+  while (node) {
+    // found highest value, search left sub-tree
+    if (!node.right && node.left) {
+      return findLargest(node.left);
+    }
 
-  // found parent of highest value with no left sub-tree
-  if (node.right && !node.right.left && !node.right.right) {
-    return node;
+    // found parent of highest value with no left sub-tree
+    if (node.right && !node.right.left && !node.right.right) {
+      return node;
+    }
+    node = node.right;
   }
-
-  return find2ndLargest(node.right);
 }
