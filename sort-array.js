@@ -1,27 +1,26 @@
 /* 
 Suppose we had an array of nn integers sorted in ascending order. How quickly could we check if a given integer is in the array?
-var ints = [...Array(50).keys()];
-ints = ints.concat(ints.map((int) => (int + 1) * 100));
 */
 
 function findInArray(int, array) {
-  var target = Math.floor(array.length / 2);
-  var searchArray = array.slice();
+  var ceiling = array.length - 1;
+  var target = Math.floor(ceiling / 2);
+  var floor = -1;
   
-  if (int > array[array.length - 1] || int < array[0]) {
+  if (int > array[ceiling] || int < array[0]) {
     return false;
   }
 
-  while (target > 0) {
-    if (int === searchArray[target]) {
+  while (ceiling > (floor + 1)) {
+    if (int === array[target]) {
       return true;
     }
-    if (int > searchArray[target]) {
-      searchArray = searchArray.slice(target);
+    if (int > array[target]) {
+      floor = target;
     } else {
-      searchArray = searchArray.slice(0, target);
+      ceiling = target;
     }
-    target = Math.floor(searchArray.length / 2);
+    target = Math.floor((floor + ceiling) / 2);
   }
 
   return false;

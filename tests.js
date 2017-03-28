@@ -26,8 +26,18 @@ describe('Superbalanced binary tree', function() {
 
   it('Can detect an imbalanced tree', function() {
     tree.insertLeft(6).insertLeft(8).insertLeft(10);
-    console.log(tree);
     const notBalanced = checkSuperBalanced(tree);
     expect(notBalanced).to.be.false;
+  });
+});
+
+describe('Sort array', function(){
+  var ints = [...Array(50).keys()];
+  ints = ints.concat(ints.map((int) => (int + 1) * 100));
+  it('Should detect an item present', function(){
+    expect(findInArray(500, ints)).to.be.true;
+  });
+  it('Should detect when an item is not present', function(){
+    expect(findInArray(501, ints)).to.be.false;
   });
 });
