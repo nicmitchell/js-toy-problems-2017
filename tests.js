@@ -41,3 +41,29 @@ describe('Sort array', function(){
     expect(findInArray(501, ints)).to.be.false;
   });
 });
+
+describe('Find rotation point', function(){
+  var words = [
+    'ptolemaic',
+    'retrograde',
+    'supplant',
+    'undulate',
+    'xenoepist',
+    'asymptote', // <-- rotates here!
+    'babka',
+    'banoffee',
+    'engender',
+    'karpatka',
+    'othellolagkage',
+  ];
+
+  it('Should find the index of the first word alphabetically when array is odd', function(){
+    expect(findRotationPoint(words)).to.equal(5);
+  });
+  it('Should find the index of the first word alphabetically when array is even', function(){
+    var words2 = words.slice(0, words.length - 1);
+    var words3 = words.slice(2);
+    expect(findRotationPoint(words2)).to.equal(5);
+    expect(findRotationPoint(words3)).to.equal(3);
+  });
+});
