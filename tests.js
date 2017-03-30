@@ -58,12 +58,37 @@ describe('Find rotation point', function(){
   ];
 
   it('Should find the index of the first word alphabetically when array is odd', function(){
+    expect(words.length % 2 === 1).to.be.true;
     expect(findRotationPoint(words)).to.equal(5);
   });
   it('Should find the index of the first word alphabetically when array is even', function(){
-    var words2 = words.slice(0, words.length - 1);
-    var words3 = words.slice(2);
-    expect(findRotationPoint(words2)).to.equal(5);
-    expect(findRotationPoint(words3)).to.equal(3);
+    var words2 = words.slice(1);
+    expect(words2.length % 2 === 0).to.be.true;
+    expect(findRotationPoint(words2)).to.equal(4);
+    var words3 = ['pussilaminous', 'querulous', ...words2];
+    expect(findRotationPoint(words3)).to.equal(6);
   });
+
+  it('Should detect if the first word searched is the proper choice', function(){
+    var words2 = words.slice();
+    expect(findRotationPoint(words2)).to.equal(5);
+  });
+
+  it('Should detect if item is first word in array', function(){
+    var words4 = [
+      'asymptote', // <-- rotates here!
+      'babka',
+      'banoffee',
+      'engender',
+      'karpatka',
+      'othellolagkage',
+      'ptolemaic',
+      'retrograde',
+      'supplant',
+      'undulate',
+      'xenoepist',
+    ];
+    // expect(findRotationPoint(words4)).to.equal(0);
+  });
+
 });

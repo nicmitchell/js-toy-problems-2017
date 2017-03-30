@@ -20,23 +20,19 @@ var words = [
 function findRotationPoint(array) {
   var floor = 0;
   var ceiling = array.length - 1;
-  var target = Math.floor(ceiling / 2);
   
-  while(target !== floor) {
-    if (array[target].charCodeAt(0) > array[floor].charCodeAt(0)) {
+  while(floor < ceiling) {
+    var target = Math.floor(floor + ((ceiling - floor) / 2));
+    if (floor + 1 === ceiling) {
+      break;
+    }
+    if (array[target] >= array[0]) {
       floor = target;
-      target = Math.floor((floor + ceiling) / 2);
-    } 
-    if (array[target].charCodeAt(0) < array[floor].charCodeAt(0)) {
+    } else {
       ceiling = target;
-      target = Math.floor((floor + ceiling) / 2);
     }
   }
 
-  if (array[floor].charCodeAt(0) < array[ceiling].charCodeAt(0)) {
-    target = floor;
-  } else {
-    target = ceiling;
-  }
-  return target;
+  return ceiling;
 }
+
