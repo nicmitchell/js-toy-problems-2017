@@ -88,7 +88,24 @@ describe('Find rotation point', function(){
       'undulate',
       'xenoepist',
     ];
-    // expect(findRotationPoint(words4)).to.equal(0);
+    expect(findRotationPoint(words4, true)).to.equal(0);
+  });
+
+  it('Should detect if item is last word in array', function(){
+    var words4 = [
+      'babka',
+      'banoffee',
+      'engender',
+      'karpatka',
+      'othellolagkage',
+      'ptolemaic',
+      'retrograde',
+      'supplant',
+      'undulate',
+      'xenoepist',
+      'asymptote', // <-- rotates here!
+    ];
+    expect(findRotationPoint(words4, true)).to.equal(10);
   });
 
 });
