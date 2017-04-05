@@ -10,16 +10,7 @@ The IDs are not guaranteed to be sorted or sequential. Orders aren't always fulf
 */
 
 const findUniqueId = function (array) {
-  const items = {};
-
-  array.forEach((item) => {
-    const id = item.toString();
-    if (!items[id]) {
-      items[id] = 1;
-    } else {
-      delete items[id];
-    }
-  });
-
-  return Object.keys(items)[0];
+  return array.reduce((prev, current) => {
+    return (prev ^= current);
+  }, 0);
 };
