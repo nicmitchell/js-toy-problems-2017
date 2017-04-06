@@ -109,3 +109,37 @@ describe('Find rotation point', function(){
   });
 
 });
+
+describe('Bit Manipulations', function(){
+  it('Should identify the bit value at a specified index', function(){
+    expect(getIthBit(8, 0)).to.equal(0);
+    expect(getIthBit(8, 1)).to.equal(0);
+    expect(getIthBit(8, 3)).to.equal(1);
+  });
+  it('Should set the bit value at a specified index', function(){
+    expect(setIthBit(8, 0)).to.equal(9);
+    expect(setIthBit(8, 2)).to.equal(12);
+  });
+  it('Should set the bit value at a specified index', function(){
+    expect(setIthBit(8, 0)).to.equal(9);
+    expect(setIthBit(8, 2)).to.equal(12);
+  });
+  it('Should clear the bit value at a specified index', function(){
+    expect(clearIthBit(8, 0)).to.equal(8);
+    expect(clearIthBit(8, 3)).to.equal(0);
+  });
+  it('Should clear the rightmost bit value', function(){
+    expect(clearRightmostBit(8)).to.equal(0);
+    expect(clearRightmostBit(9)).to.equal(8);
+  });
+  it('Should detect parity of bits (even/odd number of bits)', function(){
+    expect(getParity(15)).to.be.true;
+    expect(getParity(8)).to.be.false;
+    expect(getParity(9)).to.be.true;
+  });
+  it('Should detect Hamming distance of two bit sets', function(){
+    expect(getHammingDistance(4, 1)).to.equal(2);
+    expect(getHammingDistance(15, 1)).to.equal(3);
+    expect(getHammingDistance(8, 5)).to.equal(3);
+  });
+});
