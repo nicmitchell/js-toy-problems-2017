@@ -20,31 +20,27 @@ function reverseWordsCheating(message) {
 }
 
 function reverseWords(message) {
-  let arr = message.split('');
-  let left = 0;
-  let right = message.length - 1;
+  let arr = reverseChars(message.split(''), 0, message.length -1);
 
-  while (left < right) {
-    let tmp = arr[left];
-    arr[left] = arr[right];
-    arr[right] = tmp;
-    left++;
-    right--;
+  function reverseChars(messageArr, start, end) {
+    while (start < end) {
+      let tmp = messageArr[start];
+      messageArr[start] = messageArr[end];
+      messageArr[end] = tmp;
+      start++;
+      end--;
+    }
+    return messageArr;
   }
 
-  let leftChar = 0;
-  let rightChar = 0;
+  let start = 0;
+  let end = 0;
+
   for (let i = 0; i <= arr.length; i++) {
     if (arr[i] === ' ' || i === arr.length) {
-      rightChar = i - 1;
-      while(leftChar < rightChar) {
-        let tmp = arr[leftChar];
-        arr[leftChar] = arr[rightChar];
-        arr[rightChar] = tmp;
-        leftChar++;
-        rightChar--;
-      }
-      leftChar = i + 1;
+      end = i - 1;
+      reverseChars(arr, start, end);
+      start = i + 1;
     }
   }
 
