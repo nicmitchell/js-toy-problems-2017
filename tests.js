@@ -143,3 +143,57 @@ describe('Bit Manipulations', function(){
     expect(getHammingDistance(8, 5)).to.equal(3);
   });
 });
+
+describe('Linked Lists', function(){
+  it('Should delete a node', function(){
+
+    var a = new LinkedListNode('A');
+    var b = new LinkedListNode('B');
+    var c = new LinkedListNode('C');
+
+    a.next = b;
+    b.next = c;
+
+    deleteNode(b);
+
+    var result = new LinkedListNode('A');
+    result.next = c;
+
+    expect(a).to.eql(result);
+  });
+
+  it('Should detect a cycle', function(){
+    var a = new LinkedListNode('A');
+    var b = new LinkedListNode('B');
+    var c = new LinkedListNode('C');
+    var d = new LinkedListNode('D');
+
+    a.next = b;
+    b.next = a;
+    c.next = d;
+
+    expect(containsCycle(a)).to.be.true;
+    
+  });
+  it('Should reverse in place', function(){
+    var a = new LinkedListNode('A');
+    var b = new LinkedListNode('B');
+    var c = new LinkedListNode('C');
+    var d = new LinkedListNode('D');
+
+    a.next = b;
+    b.next = c;
+    c.next = d;
+
+    var revD = new LinkedListNode('D');
+    var revC = new LinkedListNode('C');
+    var revB = new LinkedListNode('B');
+    var revA = new LinkedListNode('A');
+
+    revD.next = revC;
+    revC.next = revB;
+    revB.next = revA;
+
+    expect(reverseLinkedList(a)).to.eql(revD);
+  });
+});
