@@ -228,4 +228,19 @@ describe('Linked Lists', function(){
 
     expect(a).to.eql(aCopy);
   })
+
+  it('Should find the kth item', function(){
+    var a = new LinkedListNode("Angel Food");
+    var b = new LinkedListNode("Bundt");
+    var c = new LinkedListNode("Cheese");
+    var d = new LinkedListNode("Devil's Food");
+    var e = new LinkedListNode("Eccles");
+
+    a.next = b;
+    b.next = c;
+    c.next = d;
+    d.next = e;
+
+    expect(kthToLastNode(2, a).value).to.eql("Devil's Food");
+  })
 });
