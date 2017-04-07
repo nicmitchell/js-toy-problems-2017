@@ -1,3 +1,4 @@
+/* eslint-disable */
 var assert = chai.assert;
 var expect = chai.expect;
 
@@ -247,10 +248,14 @@ describe('Linked Lists', function(){
 
 describe('String Manipulations', function(){
   it('Should reverse a string in place', function(){
-
     var str = 'You are the puppy of my dreams';
     var result = 'smaerd ym fo yppup eht era uoY';
+    expect(reverseStringInPlaceLongFor(str)).to.equal(result);
+  });
 
-    expect(reverseStringInPlaceLongFor(str)).to.eql(result);
+  it('Should reverse words in a sentence', function(){
+    var message = 'find you will pain only go you recordings security the into if';
+    var result = 'if into the security recordings you go only pain will you find';
+    expect(reverseWords(message)).to.equal(result);
   });
 });
