@@ -227,7 +227,7 @@ describe('Linked Lists', function(){
     cCopy.next = d;
 
     expect(a).to.eql(aCopy);
-  })
+  });
 
   it('Should find the kth item', function(){
     var a = new LinkedListNode("Angel Food");
@@ -242,5 +242,15 @@ describe('Linked Lists', function(){
     d.next = e;
 
     expect(kthToLastNode(2, a).value).to.eql("Devil's Food");
-  })
+  });
+});
+
+describe('String Manipulations', function(){
+  it('Should reverse a string in place', function(){
+
+    var str = 'You are the puppy of my dreams';
+    var result = 'smaerd ym fo yppup eht era uoY';
+
+    expect(reverseStringInPlaceLongFor(str)).to.eql(result);
+  });
 });
