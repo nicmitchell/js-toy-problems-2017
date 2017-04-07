@@ -32,5 +32,3 @@ const getHammingDistance = function(x, y) {
   }
   return count;
 }
-
-console.log(getIthBit(8, 2))
