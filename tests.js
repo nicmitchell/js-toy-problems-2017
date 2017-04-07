@@ -175,7 +175,7 @@ describe('Linked Lists', function(){
     expect(containsCycle(a)).to.be.true;
     
   });
-  it('Should reverse in place', function(){
+  it('Should be able to reverse in place', function(){
     var a = new LinkedListNode('A');
     var b = new LinkedListNode('B');
     var c = new LinkedListNode('C');
@@ -196,4 +196,36 @@ describe('Linked Lists', function(){
 
     expect(reverseLinkedList(a)).to.eql(revD);
   });
+  it('Should be able to reverse without mutating', function(){
+    var a = new LinkedListNode('A');
+    var b = new LinkedListNode('B');
+    var c = new LinkedListNode('C');
+    var d = new LinkedListNode('D');
+
+    a.next = b;
+    b.next = c;
+    c.next = d;
+
+    var revD = new LinkedListNode('D');
+    var revC = new LinkedListNode('C');
+    var revB = new LinkedListNode('B');
+    var revA = new LinkedListNode('A');
+
+    revD.next = revC;
+    revC.next = revB;
+    revB.next = revA;
+
+    expect(reverseLinkedListOutOfPlace(a)).to.eql(revD);
+
+    var aCopy = new LinkedListNode('A');
+    var bCopy = new LinkedListNode('B');
+    var cCopy = new LinkedListNode('C');
+    var dCopy = new LinkedListNode('D');
+
+    aCopy.next = b;
+    bCopy.next = c;
+    cCopy.next = d;
+
+    expect(a).to.eql(aCopy);
+  })
 });
