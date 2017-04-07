@@ -27,15 +27,14 @@ kthToLastNode(2, a);
 function kthToLastNode(k, node){
   let currentNode = node;
   let kthNode = node;
-  let count = 0;
+
+  for(let i = 0; i < k; i++) {
+    currentNode = currentNode.next;
+  }
 
   while(currentNode){
     currentNode = currentNode.next;
-    if (count === k) {
-      kthNode = kthNode.next;
-    } else {
-      count++;
-    }
+    kthNode = kthNode.next;
   }
 
   return kthNode;
